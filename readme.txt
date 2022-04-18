@@ -12,3 +12,5 @@ https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpi
 //Notes on how to run this for yourself
 *make sure node.js and all packages are installed (fetch needs to be version 2.0.0)
 *register with openweathermap for an api key and create a .env file and place it in there (ex: API_KEY={`here`})
+*running nodemon app.js will run the server, open a browser to the localhost:portnumber you specified
+*nodemon will update and restart the server anytime you make a change
