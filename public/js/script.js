@@ -44,6 +44,11 @@ document.getElementById("searchButton").addEventListener("click", async function
         const windSpeed = dailyTest.wind_speed;
         const wind_deg = toTextualDescription(dailyTest.wind_deg);
         console.log(cityName +", " +  cityState + "\n" + dateAndDayofWeek + "\n" + temperature + "°, " + main_weather + "\n" +  weather_icon  + "\n" + windSpeed + " mph, " + wind_deg);
+        $(".city").text(cityName +", " +  cityState);
+        $(".date").text(dateAndDayofWeek);
+        $(".temp").html(temperature + "°F");
+        $(".wind").text(windSpeed + " mph, " +  wind_deg);
+        $(".icon").attr("src","https://openweathermap.org/img/wn/"+ weather_icon + ".png");
         //console.log(geo_json);
   });
 
