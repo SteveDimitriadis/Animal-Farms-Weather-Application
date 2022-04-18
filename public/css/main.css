@@ -5,13 +5,20 @@ body{
     height: 100vh;
     margin: 0;
     background-color: #222;
-    background-image: url('https://source.unsplash.com/1600x900/?landscape');
+    background-image: url('https://source.unsplash.com/1600x900/?animals');
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Open Sans', sans-serif;
     font-size:120%;
 }
-
+@media (min-width: 320px) {
+    body {
+        background-color: #222;
+        background-image: url('https://source.unsplash.com/412x732/?animals');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
 .card {
     background: #000000d0;
     color: white;
