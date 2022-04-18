@@ -17,7 +17,7 @@ else{
     console.log('yikes');
 }
 
-document.getElementById("searchBtn").addEventListener("click", async function() {
+document.getElementById("searchButton").addEventListener("click", async function() {
         const cityName = document.getElementById("search").value;
         const geo_url = `/city/${cityName}`;
         const geo_response = await fetch(geo_url);
