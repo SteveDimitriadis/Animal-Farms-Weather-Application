@@ -15,18 +15,35 @@ else {
     console.log('yikes');
 }
 
-document.getElementById("searchButton").addEventListener("click", async function () {
+document.getElementById("searchButton").addEventListener("click", getWeatherDisplay);
+
+document.getElementById("search").addEventListener("keydown",
+    function (event) {
+        if (!event) {
+            var event = window.event;
+        }
+        //event.preventDefault();
+        if (event.key === 'Enter') {
+            getWeatherDisplay();
+        }
+    }, false);
+
+
+
+ //implement google places api for autocomplete cities
+ //parse to search geo api better 
+async function getWeatherDisplay() {
     $(".weatherArea").empty();
     $(".city").text("Weather in...");
 
     var cityName = document.getElementById("search").value;
-    
-    if (cityName != null) {
+
+    try {
         const geo_url = `/city/${cityName}`;
         const geo_response = await fetch(geo_url);
         const geo_json = await geo_response.json();
         cityName = geo_json[0].name;
-        cityState = geo_json[0].state;
+        cityState = geo_json[0].state ?? geo_json[0].country;
         const lat = geo_json[0].lat;
         const lon = geo_json[0].lon;
         const api_url = `weather/${lat},${lon}`;
@@ -60,14 +77,14 @@ document.getElementById("searchButton").addEventListener("click", async function
                 </div>`;
             $(".weatherArea").append(template);
         }
-    }
-    else{
-        await function header(){
-            console.log("yikes");
-        };
-    }
-});
 
+    }
+    catch (error) {
+        if (error == "SyntaxError: Unexpected token < in JSON at position 0") {
+            $(".city").text("Weather in nowhere...");
+        }
+    }
+}
 
 function toTextualDescription(degree) {
     if (degree > 337.5) return 'Northerly';
