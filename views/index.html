@@ -35,5 +35,13 @@
 </body>
 <script src="js/script.js">
 </script>
-
+<script>
+    function activatePlacesSearch(){
+        var input = document.getElementById('search');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+</script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0Re38ilhoX0GDr_iuOsxHIwoc8n9Vf3o&libraries=places&callback=activatePlacesSearch">
+</script>
 </html>
