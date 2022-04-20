@@ -1,19 +1,19 @@
-if ('geolocation' in navigator) {
-    console.log('geo avail');
-    navigator.geolocation.getCurrentPosition(async position => {
-        console.log(position.coords);
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        const api_url = `weather/${lat},${lon}`;
-        const response = await fetch(api_url);
-        const json = await response.json();
-        const daily = json.daily;
-        console.log(json);
-    });
-}
-else {
-    console.log('yikes');
-}
+// if ('geolocation' in navigator) {
+//     console.log('geo avail');
+//     navigator.geolocation.getCurrentPosition(async position => {
+//         console.log(position.coords);
+//         const lat = position.coords.latitude;
+//         const lon = position.coords.longitude;
+//         const api_url = `weather/${lat},${lon}`;
+//         const response = await fetch(api_url);
+//         const json = await response.json();
+//         const daily = json.daily;
+//         console.log(json);
+//     });
+// }
+// else {
+//     console.log('yikes');
+// }
 
 document.getElementById("searchButton").addEventListener("click", getWeatherDisplay);
 

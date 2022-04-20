@@ -39,7 +39,12 @@
     function activatePlacesSearch(){
         var input = document.getElementById('search');
         var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            console.log("lat: " + place.geometry.location.lat() + " lon: " + place.geometry.location.lat());
+        });
     }
+    
 </script>
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0Re38ilhoX0GDr_iuOsxHIwoc8n9Vf3o&libraries=places&callback=activatePlacesSearch">
