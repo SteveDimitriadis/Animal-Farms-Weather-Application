@@ -77,6 +77,10 @@ button:hover {
     margin-right: 0;
 }
 
+
+.pac-container{
+    text-align: right;
+}
 @media screen and (max-width: 1040px) {
     body {
         background-color: #222;
