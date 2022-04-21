@@ -84,7 +84,7 @@ button:hover {
 @media screen and (max-width: 1040px) {
     body {
         background-color: #222;
-        background-image: url(https://source.unsplash.com/412x732/?animals);
+        background-image: url(https://source.unsplash.com/1200x800/?animals);
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;

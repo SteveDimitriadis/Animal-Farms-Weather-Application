@@ -1,8 +1,10 @@
 const express = require('express');
 const fetch = require('node-fetch');
 require ('dotenv').config();
+
 const app = express();
 app.listen(3000, () => console.log("listening at 3000...."));
+
 app.use(express.static('public'));
 app.use(express.static('views'));
 app.use(express.json({limit: '1mb'}));
@@ -22,6 +24,7 @@ app.get('/weather/:latlon', async (request, response) => {
     response.json(json);
 });
 
+//Replaced with google places library call
 app.get('/city/:cityName', async (request, response) => {
     console.log(request.params);
     const cityName = request.params.cityName;
