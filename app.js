@@ -7,6 +7,8 @@ app.use(express.static('public'));
 app.use(express.static('views'));
 app.use(express.json({limit: '1mb'}));
 
+
+//Proxy call to openweathermap to retrieve 
 app.get('/weather/:latlon', async (request, response) => {
     console.log(request.params);
     const latlon = request.params.latlon.split(',');

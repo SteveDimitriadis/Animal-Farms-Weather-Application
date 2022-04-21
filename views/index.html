@@ -6,12 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animal Farms Weather</title>
+    <link rel="icon" type="image/x-icon" href="http://openweathermap.org/img/wn/11d.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
     <link rel="stylesheet" href="css/main.css">
+
 </head>
 
 <body>
@@ -35,17 +39,7 @@
 </body>
 <script src="js/script.js">
 </script>
-<script>
-    function activatePlacesSearch(){
-        var input = document.getElementById('search');
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            var place = autocomplete.getPlace();
-            console.log("lat: " + place.geometry.location.lat() + " lon: " + place.geometry.location.lat());
-        });
-    }
-    
-</script>
+<!-- Load google api library for places autocomplete function -->
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0Re38ilhoX0GDr_iuOsxHIwoc8n9Vf3o&libraries=places&callback=activatePlacesSearch">
 </script>
