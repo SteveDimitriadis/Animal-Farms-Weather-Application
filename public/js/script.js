@@ -6,8 +6,6 @@ function activatePlacesSearch() {
     var input = document.getElementById('search');
     var autocomplete = new google.maps.places.Autocomplete(input);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
-
-        console.log("Please: " + $(".pac-container .pac-item:first").text());
         var place = autocomplete.getPlace();
         lat = place.geometry.location.lat();
         lon = place.geometry.location.lng();
@@ -84,7 +82,6 @@ var selectFirstOnEnter = function (input) {  // store the original event binding
                 if (event.which == 13 && !suggestion_selected) {
                     var simulated_downarrow = $.Event("keydown", { keyCode: 40, which: 40 });
                     orig_listener.apply(input, [simulated_downarrow]);
-                    console.log("down arrow");
 
                     //Hacky solution to wait for api call to populate lat / lng data
                     //Better to review async / await functions
