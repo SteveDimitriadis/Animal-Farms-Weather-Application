@@ -33,20 +33,23 @@ var lon = 0;
 //https://stackoverflow.com/questions/14601655/google-places-autocomplete-pick-first-result-on-enter-key/21101771
 //Makes the search bar select the first option when you hit enter
 
-var selectFirstOnEnter = function(input) {  // store the original event binding function
+var selectFirstOnEnter = function (input) {  // store the original event binding function
     var _addEventListener = (input.addEventListener) ? input.addEventListener : input.attachEvent;
     function addEventListenerWrapper(type, listener) {  // Simulate a 'down arrow' keypress on hitting 'return' when no pac suggestion is selected, and then trigger the original listener.
-        if (type == "keydown") { 
+        if (type == "keydown") {
             var orig_listener = listener;
-            listener = function(event) {
+            listener = function (event) {
                 var suggestion_selected = $(".pac-item-selected").length > 0;
-                if (event.which == 13 && !suggestion_selected) { 
-                    var simulated_downarrow = $.Event("keydown", {keyCode: 40, which: 40}); 
+                if (event.which == 13 && !suggestion_selected) {
+                    var simulated_downarrow = $.Event("keydown", { keyCode: 40, which: 40 });
                     orig_listener.apply(input, [simulated_downarrow]);
                     console.log("down arrow");
-                    setTimeout(function(){
+
+                    //Hacky solution to wait for api call to populate lat / lng data
+                    //Better to review async / await functions
+                    setTimeout(function () {
                         getWeatherDisplay();
-                    }, 100);
+                    }, 300);
                 }
                 orig_listener.apply(input, [event]);
 
@@ -54,18 +57,18 @@ var selectFirstOnEnter = function(input) {  // store the original event binding 
         }
         _addEventListener.apply(input, [type, listener]); // add the modified listener
     }
-    if (input.addEventListener) { 
+    if (input.addEventListener) {
         input.addEventListener = addEventListenerWrapper;
-    } 
-    else if (input.attachEvent) { 
-        input.attachEvent = addEventListenerWrapper; 
+    }
+    else if (input.attachEvent) {
+        input.attachEvent = addEventListenerWrapper;
     }
 }
 
 selectFirstOnEnter(document.getElementById("search"));
 
 //Callback function for google places api
-function activatePlacesSearch(){
+function activatePlacesSearch() {
     var input = document.getElementById('search');
     var autocomplete = new google.maps.places.Autocomplete(input);
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -99,7 +102,7 @@ async function getWeatherDisplay() {
     $(".weatherArea").empty();
     $(".city").text("Weather in...");
 
-    
+
     var cityName = $("#search").val();
     try {
         console.log("API call lat lon: " + lat + " " + lon);
@@ -118,12 +121,14 @@ async function getWeatherDisplay() {
             const windSpeed = dailyTest.wind_speed;
             const wind_deg = toTextualDescription(dailyTest.wind_deg);
             $(".city").text("Weather in " + cityName);
-            
+
             var x = window.matchMedia("(max-width: 1040px)");
             if (x.matches) { // If media query matches
-                document.body.style.backgroundImage = "url(https://source.unsplash.com/412x732/?"+cityName+")";
+                document.body.style.backgroundImage =
+                    "url('https://source.unsplash.com/1200x800/?" + cityName + "')";
             } else {
-                document.body.style.backgroundImage = `url(https://source.unsplash.com/412x732/?${cityName})`;
+                document.body.style.backgroundImage =
+                    "url('https://source.unsplash.com/1600x900/?" + cityName + "')";
             }
             const template =
                 `<div class="weatherDay">
